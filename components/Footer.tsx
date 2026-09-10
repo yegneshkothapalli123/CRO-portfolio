@@ -83,20 +83,22 @@ export default function Footer() {
               </a>
             </div>
 
+<div className="footer-column">
+  <span>CONTACT</span>
 
-            <div className="footer-column">
-              <span>CONTACT</span>
+  <a href="mailto:yegneshkothapalli29@gmail.com">
+    yegneshkothapalli29@gmail.com
+  </a>
 
-              <a href="mailto:your@email.com">
-                yegneshkothapalli29@gmail.com
-              </a>
+  <a href="tel:+91XXXXXXXXXX">
+    +91 7973599240
+  </a>
 
-              <span className="footer-availability">
-                <i />
-                AVAILABLE FOR PROJECTS
-              </span>
-            </div>
-
+  <span className="footer-availability">
+    <i />
+    AVAILABLE FOR PROJECTS
+  </span>
+</div>
           </div>
 
         </div>

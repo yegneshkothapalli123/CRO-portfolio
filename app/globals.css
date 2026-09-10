@@ -844,11 +844,27 @@ button {
 }
 
 
-/* Mobile */
+/* =========================
+   MOBILE NAVBAR
+========================= */
 
-@media (max-width: 760px) {
+@media (max-width: 700px) {
   .navbar {
-    padding: 20px;
+    padding: 18px 0;
+  }
+
+  .navbar-inner {
+    width: min(100% - 32px, var(--max-width));
+  }
+
+  .navbar-logo {
+    font-size: 15px;
+    line-height: 0.95;
+  }
+
+  .navbar-logo span {
+    font-size: 9px;
+    margin-top: 4px;
   }
 
   .navbar-links {
@@ -857,6 +873,11 @@ button {
 
   .navbar-cta {
     padding: 10px 14px;
+    font-size: 9px;
+  }
+
+  .navbar-cta span {
+    font-size: 12px;
   }
 }
 /* =========================================================
