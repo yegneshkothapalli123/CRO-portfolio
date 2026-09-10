@@ -20,7 +20,7 @@ export default function Work() {
       description:
         "A fictional A/B testing project exploring how a clearer value proposition and stronger messaging could improve hero-section performance.",
       tags: ["A/B Testing", "Copy", "CRO"],
-      image: "/ab-test.png",
+      image: "/AB test.png",
     },
     {
       number: "03",
@@ -29,7 +29,7 @@ export default function Work() {
       description:
         "A complete responsive landing page designed across desktop, tablet, and mobile with conversion-focused UX.",
       tags: ["UI/UX", "Responsive", "Conversion Design"],
-      image: "/responsive-page.png",
+      image: "/Automora.png",
     },
   ];
 
@@ -64,7 +64,6 @@ export default function Work() {
           </p>
         </motion.div>
 
-
         {/* PROJECTS */}
 
         <div className="work-grid">
@@ -89,6 +88,7 @@ export default function Work() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
                 />
 
                 <div className="work-number">
@@ -96,7 +96,6 @@ export default function Work() {
                 </div>
 
               </div>
-
 
               {/* CONTENT */}
 
@@ -122,7 +121,6 @@ export default function Work() {
                   {project.description}
                 </p>
 
-
                 {/* TAGS */}
 
                 <div className="work-tags">
@@ -135,16 +133,44 @@ export default function Work() {
 
                 </div>
 
+                {/* LINKS */}
 
-                {/* LINK */}
+                {project.number === "01" ? (
+                  <div className="work-links">
+                    <a
+                      href="/work/before-after"
+                      className="work-link"
+                    >
+                      VIEW CASE STUDY
+                      <span>↗</span>
+                    </a>
 
-                <a
-                  href="#"
-                  className="work-link"
-                >
-                  View project
-                  <span>↗</span>
-                </a>
+                    <a
+                      href="/Project-1.pdf"
+                      download="Project-1.pdf"
+                      className="work-link work-pdf-link"
+                    >
+                      VIEW SOURCE PDF
+                      <span>↓</span>
+                    </a>
+                  </div>
+                ) : project.number === "02" ? (
+                 <a
+  href="/work/ab-test"
+  className="work-link"
+>
+  VIEW CASE STUDY
+  <span>↗</span>
+</a>
+                ) : (
+                  <a
+                    href="https://automora-jet.vercel.app/"
+                    className="work-link"
+                  >
+                    VIEW PROJECT
+                    <span>↗</span>
+                  </a>
+                )}
 
               </div>
 

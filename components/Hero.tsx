@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
+import ContactModal from "./ContactModal";
 
 export default function Hero() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <section className="hero">
 
@@ -13,18 +17,7 @@ export default function Hero() {
       <div className="hero-background" aria-hidden="true">
 
         {/* LEFT BACKGROUND CARD */}
-        <motion.div
-          className="floating-card card-one"
-          animate={{
-            y: [0, -14, 0],
-            rotate: [-5, -3, -5],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
+        <div className="floating-card card-one">
           <div className="mock-card">
             <small>LANDING PAGE</small>
 
@@ -39,22 +32,10 @@ export default function Hero() {
             <div className="mock-line" />
             <div className="mock-line short" />
           </div>
-        </motion.div>
-
+        </div>
 
         {/* TOP MIDDLE CARD */}
-        <motion.div
-          className="floating-card card-two"
-          animate={{
-            y: [0, 18, 0],
-            rotate: [4, 2, 4],
-          }}
-          transition={{
-            duration: 11,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
+        <div className="floating-card card-two">
           <div className="mock-card light">
             <small>CASE STUDY</small>
 
@@ -69,22 +50,10 @@ export default function Hero() {
             <div className="mock-line" />
             <div className="mock-line short" />
           </div>
-        </motion.div>
-
+        </div>
 
         {/* RIGHT BACKGROUND CARD */}
-        <motion.div
-          className="floating-card card-three"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [-4, -2, -4],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
+        <div className="floating-card card-three">
           <div className="mock-card light">
             <small>IDEAS</small>
 
@@ -98,22 +67,10 @@ export default function Hero() {
 
             <div className="mock-line" />
           </div>
-        </motion.div>
-
+        </div>
 
         {/* CENTER ANALYTICS CARD */}
-        <motion.div
-          className="floating-card card-four"
-          animate={{
-            y: [0, -12, 0],
-            rotate: [3, 1, 3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
+        <div className="floating-card card-four">
           <div className="mock-card analytics-card">
             <small>ANALYTICS</small>
 
@@ -129,22 +86,10 @@ export default function Hero() {
               +32.4%
             </div>
           </div>
-        </motion.div>
-
+        </div>
 
         {/* LOWER MIDDLE PROCESS CARD */}
-        <motion.div
-          className="floating-card card-five"
-          animate={{
-            y: [0, 16, 0],
-            rotate: [-3, -1, -3],
-          }}
-          transition={{
-            duration: 13,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
+        <div className="floating-card card-five">
           <div className="mock-card process-card">
             <small>PROCESS</small>
 
@@ -160,20 +105,17 @@ export default function Hero() {
               →
             </div>
           </div>
-        </motion.div>
-
+        </div>
 
         {/* ATMOSPHERIC LIGHT */}
         <div className="hero-glow glow-one" />
         <div className="hero-glow glow-two" />
-
 
         {/* ORBIT LINES */}
         <div className="hero-orbit orbit-one" />
         <div className="hero-orbit orbit-two" />
 
       </div>
-
 
       {/* =========================================
           MAIN HERO
@@ -202,7 +144,6 @@ export default function Hero() {
             CONVERSION DESIGNER × CRO
           </motion.p>
 
-
           <motion.h1
             initial={{
               opacity: 0,
@@ -220,15 +161,10 @@ export default function Hero() {
           >
             I make
             <br />
-
             landing pages
             <br />
-
-            <span>
-              easier to say yes to.
-            </span>
+            <span>easier to say yes to.</span>
           </motion.h1>
-
 
           <motion.p
             className="hero-description"
@@ -245,42 +181,46 @@ export default function Hero() {
               delay: 0.3,
             }}
           >
-            I help SaaS/startups turn more landing-page visitors into leads and customers through conversion-focused design, messaging, and experimentation.
+            I help SaaS/startups turn more landing-page visitors
+            into leads and customers through conversion-focused
+            design, messaging, and experimentation.
           </motion.p>
 
+          {/* HERO BUTTONS */}
 
           <motion.div
-  className="hero-actions"
-  initial={{
-    opacity: 0,
-    y: 20,
-  }}
-  animate={{
-    opacity: 1,
-    y: 0,
-  }}
-  transition={{
-    duration: 0.7,
-    delay: 0.45,
-  }}
->
-  <a
-    href="#work"
-    className="hero-btn hero-btn-primary"
-  >
-    View my work
-    <span>↗</span>
-  </a>
+            className="hero-actions"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.45,
+            }}
+          >
+            <a
+              href="#work"
+              className="hero-btn hero-btn-primary"
+            >
+              View my work
+              <span>↗</span>
+            </a>
 
-  <a
-    href="#contact"
-    className="hero-btn hero-btn-secondary"
-  >
-    Let's talk
-  </a>
-</motion.div>
+            <button
+              type="button"
+              className="hero-btn hero-btn-secondary"
+              onClick={() => setContactOpen(true)}
+            >
+              Let's talk
+            </button>
+          </motion.div>
+
         </div>
-
 
         {/* =========================================
             PROFILE PHOTO
@@ -305,25 +245,17 @@ export default function Hero() {
           }}
         >
 
-          {/* CIRCULAR PHOTO */}
-
           <div className="photo-frame">
-
             <img
               src="/Yegnesh.png"
               alt="Yegnesh"
               className="profile-image"
             />
-
           </div>
-
-
-          {/* PHOTO INFORMATION */}
 
           <div className="photo-meta">
 
             <div>
-
               <span className="meta-label">
                 YEGNESH
               </span>
@@ -331,7 +263,6 @@ export default function Hero() {
               <span>
                 CRO / UX
               </span>
-
             </div>
 
             <span>
@@ -343,7 +274,6 @@ export default function Hero() {
         </motion.div>
 
       </div>
-
 
       {/* =========================================
           HERO FOOTER
@@ -364,6 +294,15 @@ export default function Hero() {
         </span>
 
       </div>
+
+      {/* =========================================
+          CONTACT MODAL
+      ========================================= */}
+
+      <ContactModal
+        isOpen={contactOpen}
+        onClose={() => setContactOpen(false)}
+      />
 
     </section>
   );
