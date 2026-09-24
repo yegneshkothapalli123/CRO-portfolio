@@ -146,8 +146,8 @@ export default function Work() {
                     </a>
 
                     <a
-                      href="/Project-1.pdf"
-                      download="Project-1.pdf"
+                      href="/Project 1 updated.pdf"
+                      download="Project 1 updated.pdf"
                       className="work-link work-pdf-link"
                     >
                       VIEW SOURCE PDF

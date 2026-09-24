@@ -1,78 +1,154 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 
-const principles = [
+const stackRows = [
   {
-    number: "01",
-    title: "Clarity",
-    description: "Make the value obvious.",
+    direction: "left",
+    items: [
+      { text: "FIGMA", style: "outline" },
+      { text: "NEXT.JS & REACT", style: "filled" },
+      { text: "FRAMER", style: "outline" },
+      { text: "UI / UX", style: "accent" },
+      { text: "FIGMA", style: "outline" },
+    ],
   },
   {
-    number: "02",
-    title: "Friction",
-    description: "Find what's getting in the way.",
-  },
-  {
-    number: "03",
-    title: "Intent",
-    description: "Guide users toward the right action.",
-  },
-  {
-    number: "04",
-    title: "Action",
-    description: "Turn attention into conversion.",
+    direction: "right",
+    items: [
+      { text: "CSS", style: "accent" },
+      { text: "POSTHOG", style: "filled" },
+      { text: "GA4", style: "outline" },
+      { text: "LANDING PAGE CRO", style: "filled" },
+      { text: "CLARITY", style: "outline" },
+    ],
   },
 ];
 
 export default function CROMindset() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const rowOneX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", "-18%"]
+  );
+
+  const rowTwoX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["-18%", "0%"]
+  );
+
+  const rowThreeX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", "-22%"]
+  );
+
+  const rowFourX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["-22%", "0%"]
+  );
+
+  const rowPositions = [
+    rowOneX,
+    rowTwoX,
+    rowThreeX,
+    rowFourX,
+  ];
+
   return (
-    <section className="cro-mindset">
+    <section
+      ref={sectionRef}
+      className="cro-mindset"
+    >
       <div className="cro-mindset-container">
+
+        {/* =====================================================
+            INTRO
+        ===================================================== */}
 
         <motion.div
           className="cro-mindset-intro"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
         >
-          <span>CRO MINDSET</span>
+          <span>TOOLS &amp; STACK</span>
 
           <p>
-            Every conversion starts with understanding
-            what the visitor needs next.
+            The tools I use to design, build,
+            measure, and optimize high-converting
+            digital experiences.
           </p>
         </motion.div>
 
+
+        {/* =====================================================
+            SCROLLING STACK
+        ===================================================== */}
+
         <div className="cro-mindset-grid">
-          {principles.map((principle, index) => (
+
+          {stackRows.map((row, rowIndex) => (
             <motion.div
               className="cro-mindset-item"
-              key={principle.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
+              key={rowIndex}
+              style={{
+                x: rowPositions[rowIndex],
               }}
             >
-              <span className="cro-mindset-number">
-                {principle.number}
-              </span>
 
-              <div>
-                <h3>{principle.title}</h3>
+              {row.items.map((item, index) => (
+                <div
+                  key={`${item.text}-${index}`}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "34px",
+                  }}
+                >
+                  <h3
+                    className={
+                      item.style === "outline"
+                        ? "outline"
+                        : ""
+                    }
+                  >
+                    {item.text}
+                  </h3>
 
-                <p>{principle.description}</p>
-              </div>
+                  {index < row.items.length - 1 && (
+                    <span className="cro-mindset-arrow">
+                      •
+                    </span>
+                  )}
+                </div>
+              ))}
 
-              {index < principles.length - 1 && (
-                <span className="cro-mindset-arrow">→</span>
-              )}
             </motion.div>
           ))}
+
         </div>
 
       </div>

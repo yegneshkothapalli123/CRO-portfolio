@@ -5,41 +5,69 @@ import ContactModal from "./ContactModal";
 
 export default function Navbar() {
   const [contactOpen, setContactOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const openContact = () => {
-      setContactOpen(true);
+    const openContact = () => setContactOpen(true);
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("open-contact-modal", openContact);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("open-contact-modal", openContact);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
-      <header className="navbar">
+      <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <div className="navbar-inner">
-          <a href="/" className="navbar-logo">
-            YEGNESH <span>KOTHAPALLI</span>
-          </a>
 
+          {/* Logo */}
+          <button
+            type="button"
+            className="navbar-logo"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            YEGNESH KOTHAPALLI
+          </button>
+
+          {/* Navigation */}
           <nav className="navbar-links">
-            <a href="#work">Work</a>
-            <a href="#process">Process</a>
-            <a href="#about">About</a>
+            <button type="button" onClick={() => scrollToSection("work")}>
+              Work
+            </button>
+
+            <button type="button" onClick={() => scrollToSection("process")}>
+              Process
+            </button>
+
+            <button type="button" onClick={() => scrollToSection("about")}>
+              About
+            </button>
           </nav>
 
+          {/* CTA */}
           <button
             type="button"
             className="navbar-cta"
             onClick={() => setContactOpen(true)}
           >
-            Let's talk
-            <span>↗</span>
+            <span>Start a project</span>
+            <span className="navbar-cta-arrow">↗</span>
           </button>
+
         </div>
       </header>
 
