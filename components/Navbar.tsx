@@ -64,7 +64,9 @@ export default function Navbar() {
             className="navbar-cta"
             onClick={() => setContactOpen(true)}
           >
-            <span>Start a project</span>
+            <span>
+
+Book a free audit</span>
             <span className="navbar-cta-arrow">↗</span>
           </button>
 

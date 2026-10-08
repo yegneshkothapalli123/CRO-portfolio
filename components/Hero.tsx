@@ -191,7 +191,7 @@ export default function Hero() {
                 href="#work"
                 className="hero-btn hero-btn-primary"
               >
-                View case studies
+                Get a free landing page audit
                 <span>↗</span>
               </a>
 
@@ -200,7 +200,7 @@ export default function Hero() {
                 className="hero-btn hero-btn-secondary"
                 onClick={() => setContactOpen(true)}
               >
-                Discuss your landing page
+                See my case studies ↓
               </button>
             </motion.div>
           </div>
